@@ -1,0 +1,12 @@
+type Query {
+  getEmployees:[Employee]
+}
+
+
+type Employee {
+    _id: ID
+    name: String
+    age:Int
+    postion:String
+    code:String
+}
