@@ -1,5 +1,7 @@
 type Query {
   getEmployees:[Employee]
+
+  #Find User by name and password
 }
 
 type Mutation {
@@ -8,6 +10,8 @@ type Mutation {
   #Delete
   
   #Find By name
+
+  #Create User
 
 }
 
