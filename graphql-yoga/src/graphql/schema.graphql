@@ -2,11 +2,20 @@ type Query {
   getEmployees:[Employee]
 }
 
+type Mutation {
+  createEmployee(name:String,age:Int,position:String,code:String): [Employee]
+  updateEmployee(_id: ID,name:String,age:Int,position:String,code:String): Employee
+  #Delete
+  
+  #Find By name
+
+}
+
 
 type Employee {
     _id: ID
     name: String
     age:Int
-    postion:String
+    position:String
     code:String
 }
