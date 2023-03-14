@@ -1,18 +1,25 @@
 type Query {
   getEmployees:[Employee]
 
+  #Find By employee name
+ getEmployeeByName(name: String): [Employee] 
   #Find User by name and password
+  login(email:String, password:String): User
 }
 
 type Mutation {
   createEmployee(name:String,age:Int,position:String,code:String): [Employee]
   updateEmployee(_id: ID,name:String,age:Int,position:String,code:String): Employee
-  #Delete
+  #Delete employee
   
-  #Find By name
-
   #Create User
 
+}
+
+type User {
+  _id: ID
+  email:String
+  password:String
 }
 
 
