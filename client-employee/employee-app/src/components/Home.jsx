@@ -5,7 +5,8 @@ import { GET_EMPLOYEE } from "../graphql/Queries";
 export const Home = () => {
 	const [searchEmployee, { data, error }] = useLazyQuery(GET_EMPLOYEE);
 
-	useEffect(() => {
+	useEffect( () => {
+		console.log('use effect in home')
 		searchEmployee();
 	}, []);
 
