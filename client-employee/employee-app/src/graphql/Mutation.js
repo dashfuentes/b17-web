@@ -13,5 +13,16 @@ mutation createEmployee($name:String, $age:Int, $position:String, $code:String){
     
   }
 }
-
+`
+export const REMOVE_EMPLOYEE = gql`
+  mutation deleteEmp($_id:ID){
+  deleteEmployee(_id: $_id)
+{
+  _id
+  name
+  code
+  position
+  age
+}
+}
 `

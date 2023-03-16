@@ -1,16 +1,44 @@
 import React,{useState, useEffect} from "react";
 import { CREATE_EMPLOYEE } from "../graphql/Mutation";
 import { useMutation } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Form = () => {
 	const navigate = useNavigate()
+	const location = useLocation();
+	console.log( 'employee info', location.state )
+	
+	/* Variables globales */
 	const [name, setName] = useState( "" );  //var name = ""
 	const [age, setAge] = useState( "" )
 	const [position, setPosition] = useState( "" )
 	const [code, setCode] = useState( "" );
+	/* Variables globales */
 
-	const [createEmployee] = useMutation(CREATE_EMPLOYEE, {})
+	/* Variables de estado de useLocation */
+	const currentState = location.state;
+	const employeeName = currentState && currentState !== undefined ?  currentState.name : name ;
+	const employeeAge = currentState && currentState !== undefined ? currentState.age : age;
+	const employeePosition = currentState && currentState !== undefined ? currentState.position : position;
+	const employeeCode = currentState && currentState !== undefined ? currentState.code : code;
+	/* Variables de estado de useLocation */
+
+	/* Area de Mutaciones */
+	const [createEmployee] = useMutation( CREATE_EMPLOYEE, {} )
+	
+	/* Area de Mutaciones */
+
+	useEffect( () => {
+		
+		if ( currentState ) {
+			setName( employeeName )
+			setAge( employeeAge )
+			setPosition( employeePosition )
+			setCode(employeeCode)
+	  }
+	 
+	}, [])
+	
 	
 	return (
 		<form onSubmit={async ( event ) => {
@@ -43,7 +71,7 @@ export const Form = () => {
 					} }
 					id="name"
 					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-					
+					value={name}
 					required
 				/>
 			</div>
@@ -60,6 +88,7 @@ export const Form = () => {
 						setAge(event.target.value)
 					}}
 					id="age"
+					value={age}
 					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					required
 				/>
@@ -78,6 +107,7 @@ export const Form = () => {
 						setPosition(event.target.value)
 					}}
 					id="position"
+					value={position}
 					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					required
 				/>
@@ -95,6 +125,7 @@ export const Form = () => {
 						setCode(event.target.value)
 					}}
 					id="code"
+					value={code}
 					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					required
 				/>
