@@ -26,3 +26,15 @@ export const REMOVE_EMPLOYEE = gql`
 }
 }
 `
+export const UPDATE_EMPLOYEE = gql`
+
+mutation updateEmployee($_id: ID,$name:String, $age:Int, $position:String, $code:String){
+  updateEmployee(_id: $_id,name:$name, age:$age, position:$position, code: $code){
+    _id
+    name
+    position
+    code
+    age
+  }
+}
+`
