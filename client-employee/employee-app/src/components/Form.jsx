@@ -74,11 +74,11 @@ export const Form = () => {
 
 			if ( currentState ) {
 				//llamar al mutation para actualizar el empleado
-				await updateEmployee({variables: {_id, name,age,position,code}})
+				await updateEmployee({variables: {_id, name: name.toLowerCase(),age,position,code}})
 			} else {
 			//Llamar al mutation para crear el employee
 			await createEmployee( {
-				variables : {name,age,position,code}
+				variables : {name : name.toLowerCase(), age,position,code}
 			})
 			}
 			

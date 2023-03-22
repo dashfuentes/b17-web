@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { GET_EMPLOYEE } from "../graphql/Queries";
 import { REMOVE_EMPLOYEE } from "../graphql/Mutation";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { userState } from "../config/UserState";
 
 export const Home = () => {
+	const navigate = useNavigate()
 	const [searchEmployee, { data, error }] = useLazyQuery(GET_EMPLOYEE);
 	const verifySession = userState((state) => state.session);
 	console.log("session from home", verifySession);
@@ -15,8 +16,8 @@ export const Home = () => {
 		refetchQueries: [{ query: GET_EMPLOYEE }],
 	});
 
-	useEffect(() => {
-		console.log("use effect in home");
+	useEffect( () => {
+		if ( !verifySession.isValid ) return navigate( '/' )
 		searchEmployee();
 	}, []);
 

@@ -23,3 +23,17 @@ export const LOGIN =  gql`
     }
 
 `
+
+export const GET_EMPLOYEE_BY_NAME = gql`
+   query getEmployeeByName($name:String){
+    getEmployeeByName(name: $name){
+         _id 
+        name
+        code
+        position
+        age
+        
+    }
+   }
+
+    `

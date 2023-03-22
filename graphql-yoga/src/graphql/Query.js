@@ -15,7 +15,7 @@ const Query = {
          return verifyUser
     },
     async getEmployeeByName( _, { name } ) {
-        const searchEmployeeByName = await Employee.find( { name } );
+        const searchEmployeeByName = await Employee.find( { name :name } );
         console.log( 'getting employee', searchEmployeeByName );
 
        return searchEmployeeByName 
